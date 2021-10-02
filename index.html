@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Random Number game</title>
+  </head>
+  <style>
+    body {
+      background: url("https://4.bp.blogspot.com/-rnCyslP9xUI/XAfx995Tc1I/AAAAAAAABo0/VmCR79yE3RMRSKZ4KoDeGZC91eTiO43mwCLcBGAs/s1600/Untitled-1.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: "Karla", sans-serif;
+      box-sizing: border-box;
+    }
+
+    .glass {
+      position: relative;
+      background: inherit;
+      overflow: hidden;
+      width: 70%;
+      height: 70%;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1;
+    }
+
+    .glass:before {
+      content: "";
+      position: absolute;
+      background: inherit;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: -20px;
+      box-shadow: inset 0 0 500px rgba(255, 255, 255, 0.4);
+      filter: blur(10px);
+      z-index: -1;
+    }
+    .heading {
+      display: flex;
+      justify-content: center;
+      font-weight: 700;
+      color: #eee;
+      margin-top: 0.5%;
+    }
+    .subheading {
+      font-weight: 500;
+      color: #f5fffa;
+    }
+    .diffi {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-top: 2%;
+    }
+    .glass button {
+      display: inline-block;
+      border-radius: 12px;
+      padding: -1.4%;
+      font-family: 300;
+    }
+    .typewriter {
+      font-family: Courier, monospace;
+      display: inline-block;
+      margin-top: 4%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .typewriter-text {
+      overflow: hidden;
+      letter-spacing: 2px;
+      animation: typing 5s steps(30, end), blink 0.75s step-end infinite;
+      white-space: nowrap;
+      font-size: 30px;
+      font-weight: 700;
+      color: orange;
+      border-right: 4px solid orange;
+      box-sizing: border-box;
+    }
+
+    .guessarea {
+      margin: auto;
+      margin-top: 5%;
+      height: 25px;
+      width: 75%;
+      justify-content: center;
+      background-color: aqua;
+    }
+    
+
+    @keyframes typing {
+      from {
+        width: 0%;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      from,
+      to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: orange;
+      }
+    }
+  </style>
+  <body>
+    <div class="glass">
+      <h1 class="heading">RANDOM NUMBER GAME</h1>
+      <div class="diffi">
+        <h2 class="subheading" id="difficulty">CHOOSE YOUR DIFFICULTY</h2>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          id="easy"
+          title="SO YOU CHOSE THE EASY WAY OUT. GUESS THE NUMBER CHOSEN BY ME IN THE RANGE 0 TO 20 IN 7 TRIES"
+        >
+          CHICKEN MODE
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          id="medium"
+          title="GRINDER IS GAY NOT HARDWORKING .GUESS THE NUMBER CHOSEN BY ME IN THE RANGE 0 TO 50 IN 5 TRIES"
+        >
+          GRINDER
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          id="difficult"
+          title="DAMMN YOU ARE LIKE HITLER BUT EVEN HE CARED FOR GERMANY OR SOMETHING. GUESS THE NUMBER CHOSEN BY ME IN THE RANGE 0 TO 100 IN 3 TRIES"
+        >
+          SON OF SATAN
+        </button>
+      </div>
+      <div class="input-group input-group-sm mb-3 guessarea">
+        <span class="input-group-text" id="inputGroup-sizing-sm"
+          >Your Guess</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-sm"
+          tabindex="-1"
+          id="actguess"
+        />
+        <button class="btn btn-dark submit" type="button" id="button-addon2 sobmit">SUBMIT GUESS</button>
+</div>
+      </div>
+      <div class="typewriter">
+        <div class="typewriter-text" id="decl"></div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+    integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+    crossorigin="anonymous"
+  ></script>
+  <script src="app.js"></script>
+</html>
