@@ -1,13 +1,11 @@
 const ebtn = document.getElementById("easy");
 const mbtn = document.getElementById("medium");
 const hbtn = document.getElementById("difficult");
-let sbtn = document.getElementById("sobmit");
 const gar = document.getElementById("guessarea");
 const res = document.getElementById("decl");
-let numz = document.getElementById("actguess");
+const ans = document.getElementById("correct");
 
-let tries;
-let usenumb = [];
+let guess;
 let randomnumb;
 let winstat = false;
 let taunts = [
@@ -15,63 +13,61 @@ let taunts = [
   "Sorry there was no difficulty level for losers",
   "You have failed Homosapiens",
   "Go play pubg",
+  "I think you have pooped out your brains",
 ];
-let rantaut = Math.floor(Math.random() * taunts.length) + 1;
-
-sbtn.addEventListener("click", function () {
-  usenumb.push(numz);
-  console.log(usenumb);
-});
 
 ebtn.addEventListener("click", function () {
-  tries = 7;
-  for (let i = 1; i <= 7; i++) {
-    tries--;
-    if (usenumb[i] === randomnumb) {
-      winstat = true;
-      break;
-    } else {
-      numz.innerText = "";
-      res.innerText = taunts[rantaut];
-      res.innerHTML = `<div class="triesrem> TRIES REMAINING:${tries}`;
-    }
+  randomnumb = Math.floor(Math.random() * 20) + 1;
+  let rantaut = Math.floor(Math.random() * taunts.length);
+  console.log(rantaut);
+  res.innerText = "";
+  guess = prompt(
+    "I am thinking of a random number between 1 and 20. What is it?"
+  );
+
+  if (guess === randomnumb) {
+    winstat = true;
+    endit();
+  } else {
+    res.innerText = taunts[rantaut];
+    ans.innerText = `ANSWER ${randomnumb}`;
   }
-  endit();
 });
 
 mbtn.addEventListener("click", function () {
-  tries = 5;
-  for (let i = 1; i <= 5; i++) {
-    tries--;
-    if (usenumb[i] === randomnumb) {
-      winstat = true;
-      break;
-    } else {
-      numz.innerText = "";
-      res.innerText = taunts[rantaut];
-      res.innerHTML = `<div class="triesrem> TRIES REMAINING:${tries}`;
-    }
+  randomnumb = Math.floor(Math.random() * 50) + 1;
+  let rantaut = Math.floor(Math.random() * taunts.length);
+  console.log(rantaut);
+  res.innerText = "";
+  guess = prompt(
+    "I am thinking of a random number between 1 and 50. What is it?"
+  );
+  if (guess === randomnumb) {
+    winstat = true;
+    endit();
+  } else {
+    res.innerText = taunts[rantaut];
+    ans.innerText = `ANSWER ${randomnumb}`;
   }
-  endit();
 });
 
 hbtn.addEventListener("click", function () {
-  tries = 3;
-  for (let i = 1; i <= 3; i++) {
-    tries--;
-    if (usenumb[i] === randomnumb) {
-      winstat = true;
-      break;
-    } else {
-      numz.innerText = "";
-      res.innerText = taunts[rantaut];
-      res.innerHTML = `<div class="triesrem> TRIES REMAINING:${tries}`;
-    }
+  randomnumb = Math.floor(Math.random() * 100) + 1;
+  let rantaut = Math.floor(Math.random() * taunts.length);
+  console.log(rantaut);
+  res.innerText = "";
+  guess = prompt(
+    "I am thinking of a random number between 1 and 100. What is it?"
+  );
+  if (guess === randomnumb) {
+    winstat = true;
+    endit();
+  } else {
+    res.innerText = taunts[rantaut];
+    ans.innerText = `ANSWER ${randomnumb}`;
   }
-  endit();
 });
 
 function endit() {
   if (winstat === true) res.innerText = "MEH!!Anyone could have done it";
-  usenumb = [];
 }
