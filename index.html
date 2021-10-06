@@ -25,6 +25,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
       height: 100vh;
@@ -70,6 +71,7 @@
     .diffi {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-around;
       margin-top: 2%;
     }
@@ -89,6 +91,7 @@
     }
 
     .typewriter-text {
+      display: block;
       overflow: hidden;
       letter-spacing: 2px;
       animation: typing 5s steps(30, end), blink 0.75s step-end infinite;
@@ -100,15 +103,13 @@
       box-sizing: border-box;
     }
 
-    .guessarea {
-      margin: auto;
-      margin-top: 5%;
-      height: 25px;
-      width: 75%;
-      justify-content: center;
-      background-color: aqua;
+    .correctguess {
+      display: block;
+      margin-top: 8.5%;
+      color: #eee;
+      text-align: center;
+      width: auto;
     }
-    
 
     @keyframes typing {
       from {
@@ -128,11 +129,23 @@
         border-color: orange;
       }
     }
+    @media (max-width: 1114px) {
+      .typewriter-text {
+        font-size: 22px;
+      }
+    }
+    @media (max-width: 830px) {
+      .typewriter-text {
+        font-size: 16px;
+      }
+    }
   </style>
   <body>
     <div class="glass">
+      <!--1-->
       <h1 class="heading">RANDOM NUMBER GAME</h1>
       <div class="diffi">
+        <!--2-->
         <h2 class="subheading" id="difficulty">CHOOSE YOUR DIFFICULTY</h2>
         <button
           type="button"
@@ -165,25 +178,15 @@
           SON OF SATAN
         </button>
       </div>
-      <div class="input-group input-group-sm mb-3 guessarea">
-        <span class="input-group-text" id="inputGroup-sizing-sm"
-          >Your Guess</span
-        >
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
-          tabindex="-1"
-          id="actguess"
-        />
-        <button class="btn btn-dark submit" type="button" id="button-addon2 sobmit">SUBMIT GUESS</button>
-</div>
-      </div>
+      <!--2-->
       <div class="typewriter">
+        <!--3-->
         <div class="typewriter-text" id="decl"></div>
       </div>
+      <!--3-->
+      <div class="correctguess" id="correct"></div>
     </div>
+    <!--1-->
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
